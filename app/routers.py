@@ -11,29 +11,33 @@ bp = Blueprint('home', __name__, url_prefix='')
 @bp.route('/')
 def index():
     if current_user.is_authenticated:
-        places = Place.query.filter_by(user=current_user).order_by(Place.added_time.desc()).all()
+        places = Place.query.filter_by(user=current_user).order_by(Place.added_at.desc()).all()
         return render_template('index.html', places=places)
     return render_template('index.html')
 
 
-@login_required
 @bp.route('/add-place')
+@login_required
 def show_add_place_form():
     return render_template('add_place_form.html', apikey=APIKEY_YANDEX)
 
 
 @bp.route('/save-place', methods=['POST'])
+@login_required
 def save_place():
     place_data = request.get_json()
-    place = Place(
-        address=place_data.get('address'),
-        title=place_data.get('title'),
-        comment=place_data.get('comment')
-    )
-    place.user = current_user
-    db.session.add(place)
-    db.session.commit()
-    return Response(status=201)
+    if place_data.get('address') and place_data.get('title') and place_data.get('comment'):
+        place = Place(
+            address=place_data.get('address'),
+            title=place_data.get('title'),
+            comment=place_data.get('comment')
+        )
+        place.user = current_user
+        db.session.add(place)
+        db.session.commit()
+        return Response(status=201)
+
+    return Response(status=400)
 
 
 @bp.route('/logout')

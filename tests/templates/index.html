@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block head %} {{ super() }} {% endblock %}
+{% block header %} {{ super() }} {% endblock %}
+{% block content %}
+<div class="h-75 d-flex justify-content-center mt-5">
+  <div class="w-75">
+      {% if current_user.is_authenticated %}
+        {% if places %}
+            <p><h1 class="justify-text">Ваши воспоминания:</h1></p>
+            <div class="row w-100 pb-5">
+            {% for place in places %}
+                <div class="col-sm-6 w-100">
+                    <div class="card w-100 m-2">
+                    <div class="card-body">
+                        <div class="card-header">
+                            <h5>{{place.title}}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{place.comment}}</p>
+                        </div>
+                        <div class="card-footer blockquote-footer">
+                            {{place.address}}
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        {% else %}
+            <p><h1 class="justify-text text-center align-items-center">У вас пока нет ни одного воспоминания</h1></p>
+        {% endif %}
+      {% else %}
+          <h1><p class="justify-text text-center">Сервис для хранения воспоминаний</p></h1>
+          <div class="btn-group-horizontal text-center gx-6 p-3">
+            <a class="btn btn-default p-3" href="{{ url_for('home.oauth_authorize', provider='google') }}">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/google.svg" width="30" /> Войти с Google
+            </a>
+            <a class="btn btn-default p-3" href="{{ url_for('home.oauth_authorize', provider='vk') }}">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/vk.svg" width="30" /> Войти с Вконтакте
+            </a>
+          </div>
+      {% endif %}
+    {% for message in get_flashed_messages() %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+{% block footer %} {{ super() }} {% endblock %}

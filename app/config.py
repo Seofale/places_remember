@@ -16,3 +16,4 @@ OAUTH_CREDENTIALS = {
 }
 
 APIKEY_YANDEX = 'a1fb3f07-e920-4f37-a100-d2d1fa6bc1c0'
+SECRET_KEY = 'super_secret_key'

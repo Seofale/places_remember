@@ -24,7 +24,7 @@ class Place(db.Model):
     comment = db.Column(db.String(64), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('User', backref='places')
-    added_time = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    added_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
 
 @lm.user_loader
