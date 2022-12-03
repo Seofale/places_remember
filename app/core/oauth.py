@@ -7,7 +7,6 @@ from app.core.config import OAUTH_CREDENTIALS
 
 
 class OAuth2SignIn:
-
     def __init__(self, provider_name):
         self.provider_name = provider_name
         self.service = OAuth2Service(
@@ -47,7 +46,6 @@ class OAuth2SignIn:
 
 
 class OAuthVKSignIn(OAuth2SignIn):
-    
     def __init__(self):
         super(OAuthVKSignIn, self).__init__('vk')
 
@@ -83,7 +81,6 @@ class OAuthVKSignIn(OAuth2SignIn):
 
 
 class OAuthGoogleSignIn(OAuth2SignIn):
-
     def __init__(self):
         super(OAuthGoogleSignIn, self).__init__('google')
 
