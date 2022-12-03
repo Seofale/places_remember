@@ -3,7 +3,7 @@ import json
 from rauth import OAuth2Service
 from flask import redirect, url_for, request
 
-from app.config import OAUTH_CREDENTIALS
+from app.core.config import OAUTH_CREDENTIALS
 
 
 class OAuth2SignIn:

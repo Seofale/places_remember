@@ -5,8 +5,8 @@ from flask import Flask, Response
 from flask_login import login_user
 from flask_testing import TestCase
 
-from app.models import db, lm, User, Place
-from app.routers import bp
+from app.core.models import db, lm, User, Place
+from app.core.routers import bp
 
 
 class PlaceTests(TestCase):

@@ -17,7 +17,7 @@ build/
 .idea/
 docs/_build/
 .vscode
-instance
+app/instance
 .instance/
 
 # Coverage reports

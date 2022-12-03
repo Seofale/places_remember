@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, url_for, redirect, flash, request, Response
 from flask_login import login_user, logout_user, current_user, login_required
 
-from app.oauth import OAuth2SignIn
-from app.models import db, User, Place
-from app.config import APIKEY_YANDEX
+from app.core.oauth import OAuth2SignIn
+from app.core.models import db, User, Place
+from app.core.config import APIKEY_YANDEX
 
 bp = Blueprint('home', __name__, url_prefix='')
 

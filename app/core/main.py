@@ -1,8 +1,8 @@
 from flask import Flask
 
-from app.routers import bp
-from app.models import db, lm
-from app.config import SECRET_KEY
+from app.core.routers import bp
+from app.core.models import db, lm
+from app.core.config import SECRET_KEY
 
 
 def create_application():

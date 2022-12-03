@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+  server:
+    build:
+      context: ./
+      dockerfile: ./app/Dockerfile
+    command: flask --app core.main run --host=0.0.0.0
+    volumes:
+      - ./app:/app
+    ports:
+      - '5000:5000'
